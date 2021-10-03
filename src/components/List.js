@@ -1,17 +1,23 @@
-import React, { useReducer, useState } from "react";
-import { actions, initialListItems, todoReducer } from "../hooks";
+import React, { useReducer, useState, useEffect } from "react";
+import { actions, todoReducer, useLocalStorageState } from "../hooks";
 import { Form, Input, Button, List } from "antd";
 import { CheckOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import TodoItem from "./TodoItem";
 
 const TodoList = () => {
-  const [state, dispatch] = useReducer(todoReducer, initialListItems);
+  const [storageState, setStorageState] = useLocalStorageState("todo");
+  const [state, dispatch] = useReducer(todoReducer, storageState);
   const [newTodo, setNewTodo] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch({ type: actions.add, text: newTodo });
     setNewTodo("");
   };
+
+  useEffect(() => {
+    setStorageState(state);
+  }, [state]);
+
   return (
     <Form>
       <Form.Item>

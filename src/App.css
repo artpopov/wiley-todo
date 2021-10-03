@@ -3,6 +3,27 @@
   padding: 10%;
 }
 
+.todo_item {
+  display: flex;
+  width: 90%;
+  cursor: pointer;
+  padding: 5px;
+  transition: border-width ease-in-out 0.4s;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  border: none;
+  white-space: nowrap;
+}
+
+@keyframes strike {
+  from { text-decoration-color: transparent; }
+  to { text-decoration-color: unset; }
+}
+.strike {
+  text-decoration: line-through;
+  animation: strike 1s linear;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

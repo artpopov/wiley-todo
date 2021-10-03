@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Input } from "antd";
+import "../App.css";
 
 const TodoItem = ({ text, status, handleChange }) => {
   const [editable, setEditable] = useState(false);
@@ -8,13 +9,8 @@ const TodoItem = ({ text, status, handleChange }) => {
   if (!editable) {
     return (
       <div
+        className={`todo_item ${status === "done" ? "strike" : ""}`}
         onClick={toggleEditable}
-        style={{
-          display: "flex",
-          width: "100%",
-          cursor: "pointer",
-          textDecoration: status === "done" ? "line-through" : "none",
-        }}
       >
         {text}
       </div>
